@@ -5,7 +5,6 @@
  */
 package pt.XadrEst;
 
-import pt.JogoDeTabuleiro.TipoJogador;
 import pt.Xadrez.CorPeca;
 import pt.Xadrez.TabuleiroXadrez;
 import java.util.Scanner;
