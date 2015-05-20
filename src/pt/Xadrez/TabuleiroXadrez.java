@@ -18,9 +18,9 @@ import java.util.List;
 
 /**
  * Representação de um tabuleiro de Xadrez com várias divisões.
- * @author Ricardo
+ * @author Ricardos
  */
-public class TabuleiroXadrez extends Tabuleiro {
+public class TabuleiroXadrez extends Tabuleiro<String> {
 
 
     
@@ -33,14 +33,14 @@ public class TabuleiroXadrez extends Tabuleiro {
         for (char c = 'A'; c <= 'H'; c++) {
             for (int i = 8; i > 0; i--) {
                 String id = String.format("%c%d", c, i);
-                this.nodes.put(id, this.criarDivisão(id));
+                this.divisoes.put(id, this.criarDivisão(id));
             }
         }
 
         for (char c = 'A'; c <= 'H'; c++) {
             for (int i = 8; i > 0; i--) {
                 
-                Object objeto = this.nodes.get(String.format("%c%d", c, i));
+                Object objeto = this.divisoes.get(String.format("%c%d", c, i));
                 
                 if(!(objeto instanceof Divisao))
                 {
@@ -49,62 +49,62 @@ public class TabuleiroXadrez extends Tabuleiro {
                 
                 Divisao node = (Divisao)objeto;
                 if (c != 'A') {
-                    node.criarLigacao(Direcao.LEFT, this.nodes.get(String.format("%c%d", (char) (c - 1), i)));
+                    node.criarLigacao(Direcao.LEFT, this.divisoes.get(String.format("%c%d", (char) (c - 1), i)));
                     if (i != 8) {
-                        node.criarLigacao(Direcao.TOP_LEFT, this.nodes.get(String.format("%c%d", (char) (c - 1), i + 1)));
+                        node.criarLigacao(Direcao.TOP_LEFT, this.divisoes.get(String.format("%c%d", (char) (c - 1), i + 1)));
                     }
                     if (i != 1) {
-                        node.criarLigacao(Direcao.BOTTOM_LEFT, this.nodes.get(String.format("%c%d", (char) (c - 1), i - 1)));
+                        node.criarLigacao(Direcao.BOTTOM_LEFT, this.divisoes.get(String.format("%c%d", (char) (c - 1), i - 1)));
                     }
                 }
 
                 if (c != 'H') {
-                    node.criarLigacao(Direcao.RIGHT, this.nodes.get(String.format("%c%d", (char) (c + 1), i)));
+                    node.criarLigacao(Direcao.RIGHT, this.divisoes.get(String.format("%c%d", (char) (c + 1), i)));
                     if (i != 8) {
-                        node.criarLigacao(Direcao.TOP_RIGHT, this.nodes.get(String.format("%c%d", (char) (c + 1), i + 1)));
+                        node.criarLigacao(Direcao.TOP_RIGHT, this.divisoes.get(String.format("%c%d", (char) (c + 1), i + 1)));
                     }
                     if (i != 1) {
-                        node.criarLigacao(Direcao.BOTTOM_RIGHT, this.nodes.get(String.format("%c%d", (char) (c + 1), i - 1)));
+                        node.criarLigacao(Direcao.BOTTOM_RIGHT, this.divisoes.get(String.format("%c%d", (char) (c + 1), i - 1)));
                     }
                 }
                 if (i != 8) {
-                    node.criarLigacao(Direcao.TOP, this.nodes.get(String.format("%c%d", c, i + 1)));
+                    node.criarLigacao(Direcao.TOP, this.divisoes.get(String.format("%c%d", c, i + 1)));
                 }
                 if (i != 1) {
-                    node.criarLigacao(Direcao.BOTTOM, this.nodes.get(String.format("%c%d", c, i - 1)));
+                    node.criarLigacao(Direcao.BOTTOM, this.divisoes.get(String.format("%c%d", c, i - 1)));
                 }
 
             }
         }
 
         for (char c = 'A'; c <= 'H'; c++) {
-            this.nodes.get(String.format("%c7", c)).inserirPeca(new Peao(CorPeca.BRANCA));
-            this.nodes.get(String.format("%c2", c)).inserirPeca(new Peao(CorPeca.PRETA));
+            this.divisoes.get(String.format("%c7", c)).inserirPeca(new Peao(CorPeca.BRANCA));
+            this.divisoes.get(String.format("%c2", c)).inserirPeca(new Peao(CorPeca.PRETA));
         }
 
-        this.nodes.get("A8").inserirPeca(new Torre(CorPeca.BRANCA));
-        this.nodes.get("H8").inserirPeca(new Torre(CorPeca.BRANCA));
+        this.divisoes.get("A8").inserirPeca(new Torre(CorPeca.BRANCA));
+        this.divisoes.get("H8").inserirPeca(new Torre(CorPeca.BRANCA));
 
-        this.nodes.get("A1").inserirPeca(new Torre(CorPeca.PRETA));
-        this.nodes.get("H1").inserirPeca(new Torre(CorPeca.PRETA));
+        this.divisoes.get("A1").inserirPeca(new Torre(CorPeca.PRETA));
+        this.divisoes.get("H1").inserirPeca(new Torre(CorPeca.PRETA));
 
-        this.nodes.get("B8").inserirPeca(new Cavalo(CorPeca.BRANCA));
-        this.nodes.get("G8").inserirPeca(new Cavalo(CorPeca.BRANCA));
+        this.divisoes.get("B8").inserirPeca(new Cavalo(CorPeca.BRANCA));
+        this.divisoes.get("G8").inserirPeca(new Cavalo(CorPeca.BRANCA));
 
-        this.nodes.get("B1").inserirPeca(new Cavalo(CorPeca.PRETA));
-        this.nodes.get("G1").inserirPeca(new Cavalo(CorPeca.PRETA));
+        this.divisoes.get("B1").inserirPeca(new Cavalo(CorPeca.PRETA));
+        this.divisoes.get("G1").inserirPeca(new Cavalo(CorPeca.PRETA));
 
-        this.nodes.get("C8").inserirPeca(new Bispo(CorPeca.BRANCA));
-        this.nodes.get("F8").inserirPeca(new Bispo(CorPeca.BRANCA));
+        this.divisoes.get("C8").inserirPeca(new Bispo(CorPeca.BRANCA));
+        this.divisoes.get("F8").inserirPeca(new Bispo(CorPeca.BRANCA));
 
-        this.nodes.get("C1").inserirPeca(new Bispo(CorPeca.PRETA));
-        this.nodes.get("F1").inserirPeca(new Bispo(CorPeca.PRETA));
+        this.divisoes.get("C1").inserirPeca(new Bispo(CorPeca.PRETA));
+        this.divisoes.get("F1").inserirPeca(new Bispo(CorPeca.PRETA));
 
-        this.nodes.get("D8").inserirPeca(new Rei(CorPeca.BRANCA));
-        this.nodes.get("E8").inserirPeca(new Rainha(CorPeca.BRANCA));
+        this.divisoes.get("D8").inserirPeca(new Rei(CorPeca.BRANCA));
+        this.divisoes.get("E8").inserirPeca(new Rainha(CorPeca.BRANCA));
 
-        this.nodes.get("D1").inserirPeca(new Rei(CorPeca.PRETA));
-        this.nodes.get("E1").inserirPeca(new Rainha(CorPeca.PRETA));
+        this.divisoes.get("D1").inserirPeca(new Rei(CorPeca.PRETA));
+        this.divisoes.get("E1").inserirPeca(new Rainha(CorPeca.PRETA));
 
     }
     
@@ -125,7 +125,7 @@ public class TabuleiroXadrez extends Tabuleiro {
      */
     public ProxyDivisao gerarProxyDivisao(String coordenada) {
         
-        Object objeto = this.nodes.get(coordenada);
+        Object objeto = this.divisoes.get(coordenada);
         if(!(objeto instanceof Divisao))
         {
             throw new RuntimeException("O nó não é uma divisão");
@@ -147,7 +147,7 @@ public class TabuleiroXadrez extends Tabuleiro {
             for (int i = 8; i > 0; i--) {
                 String id = String.format("%c%d", c, i);
                 
-                Object objeto = this.nodes.get(id);
+                Object objeto = this.divisoes.get(id);
                 if(!(objeto instanceof Divisao))
                 {
                     throw new RuntimeException("O nó não é uma divisão");
@@ -174,7 +174,7 @@ public class TabuleiroXadrez extends Tabuleiro {
             for (int i = 8; i > 0; i--) {
                 String id = String.format("%c%d", c, i);
                 
-                Object objeto = this.nodes.get(id);
+                Object objeto = this.divisoes.get(id);
                 if(!(objeto instanceof Divisao))
                 {
                     throw new RuntimeException("O nó não é uma divisão");
@@ -236,7 +236,7 @@ public class TabuleiroXadrez extends Tabuleiro {
             for (int i = 8; i > 0; i--) {
                 String id = String.format("%c%d", c, i);
                 
-                Object objeto = this.nodes.get(id);
+                Object objeto = this.divisoes.get(id);
                 if(!(objeto instanceof Divisao))
                 {
                     throw new RuntimeException("O nó não é uma divisão");
@@ -282,7 +282,7 @@ public class TabuleiroXadrez extends Tabuleiro {
 
                 String id = String.format("%c%d", c, i);
 
-                Object objeto = this.nodes.get(id);
+                Object objeto = this.divisoes.get(id);
                 if(!(objeto instanceof Divisao))
                 {
                     throw new RuntimeException("O nó não é uma divisão");
