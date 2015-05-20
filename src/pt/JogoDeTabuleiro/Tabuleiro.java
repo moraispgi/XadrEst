@@ -11,13 +11,12 @@ import java.util.HashMap;
  * Nota:
  * As peças não poderão entrar como argumento do exterior da classe
  * @author Ricardo
- * @param <K> tipo que identifica a divisão
  */
-public abstract class Tabuleiro<K> {
+public abstract class Tabuleiro {
     /**
      * Hash map que tem todas as divisoes do tabuleiro destiguiveis por uma String
      */
-    protected HashMap<K,NodeDivisao> divisoes = new HashMap<>();
+    protected HashMap<String,NodeDivisao> nodes = new HashMap<>();
     
     
 }
