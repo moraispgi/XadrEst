@@ -16,8 +16,6 @@ public class Jogada {
 
     private JogadorXadrEST jogador;
 
-    int REMOVER;
-    
     private Movimento movimento;
     private ProxyDivisao divisaoOrigem;
     private ProxyDivisao divisaoDestino;
