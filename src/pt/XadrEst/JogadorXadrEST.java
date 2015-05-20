@@ -6,7 +6,6 @@
 package pt.XadrEst;
 
 import pt.JogoDeTabuleiro.Jogador;
-import pt.JogoDeTabuleiro.TipoJogador;
 import pt.Xadrez.CorPeca;
 import pt.Xadrez.Movimento;
 import pt.Xadrez.ProxyDivisao;
@@ -28,19 +27,21 @@ public class JogadorXadrEST extends Jogador {
      * Nome do jogador
      */
     public final String nome;
-
+    private final TipoJogador tipoJogador;
     /**
      *
      * @param nome nome do jogador
      * @param tipoJogador tipo de jogador
      */
     public JogadorXadrEST(String nome, TipoJogador tipoJogador) {
-        super(tipoJogador);
-
+        
+        if(tipoJogador == null)
+            throw new RuntimeException("O jogador deve ter um tipo.");
         if (nome == null) {
             throw new RuntimeException("O nome não pode ser null.");
         }
-
+        
+        this.tipoJogador = tipoJogador;
         this.nome = nome;
     }
 
